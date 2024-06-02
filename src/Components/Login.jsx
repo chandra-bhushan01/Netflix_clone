@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Header from './Header'
 const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true);
+
+
+
+  const handleButtonClick = ()=>{
+
+  }
   
   const toggleSigninForm = ()=>{
     setIsSignInForm(!isSignInForm);
@@ -43,7 +49,8 @@ const Login = () => {
           placeholder="Password"
           className="p-4 mt-3 w-full bg-gray-900"
         />
-        <button className=" bg-red-700 p-4 mt-8 w-full">Sign In</button>
+        <button className=" bg-red-700 p-4 mt-8 w-full" onClick={handleButtonClick}>{isSignInForm?"Sign In":"Sign Up"}</button>
+
         <p className="py-2" onClick={toggleSigninForm}>{ isSignInForm?"New to Netflix? SignUp Now":"Already Registered? Sign In"}</p>
       </form>
     </div>
