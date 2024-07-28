@@ -12,7 +12,12 @@
 - create signup in firebase  
 - implement signuser api
 - created our store redux with user slice
-- 
+- implemented signout
+- update profine api call
+
+
+
+- movies form TMDB movies
 
 # Features
 - Login/ Sign Up
