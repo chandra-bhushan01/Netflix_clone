@@ -1,6 +1,5 @@
 
 import { getAuth, signOut } from "firebase/auth";
-import{auth} from "../Utils/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Header = () => {
