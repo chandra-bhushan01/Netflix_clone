@@ -1,8 +1,11 @@
-import React from 'react'
 
-const Browse = () => {
+import Header from './Header'
+
+const Browse = () =>{
   return (
-    <div>Browse</div>
+   <>
+   <Header/>
+   </>
   )
 }
 

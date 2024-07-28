@@ -10,6 +10,9 @@
 - firebase setup
 - Deploying app to production
 - create signup in firebase  
+- implement signuser api
+- created our store redux with user slice
+- 
 
 # Features
 - Login/ Sign Up
@@ -26,4 +29,10 @@
 - netflixGPT
     - Search Bar
     - Movie Suggestion
+
+
+
+
+    bittu@gmail.com
+    Bittu@12345
      

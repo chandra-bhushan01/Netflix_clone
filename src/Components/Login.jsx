@@ -2,6 +2,9 @@ import { useState } from 'react'
 import Header from './Header'
 import { useRef } from 'react';
 import { checkValidData } from '../Utils/Validate';
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import{auth} from "../Utils/Firebase"
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -9,6 +12,7 @@ const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true);
   const[errorMessage, setErrorMessage] = useState(null);
+  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -20,7 +24,44 @@ const Login = () => {
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
 
+    if(message) return;
+
+
+
     //Sign In/ Sign Up
+    if(!isSignInForm){
+      //SignUp logic
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user)
+          navigate("/browse");
+          
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" +errorMessage);
+        });
+
+      }else{
+        //Signin logic
+        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user)
+          navigate("/browse");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+
+
+    }
     
 
   }
@@ -68,7 +109,7 @@ const Login = () => {
           className="p-4 mt-3 w-full bg-gray-900"
         />
 
-        <p className='text-red-600 mt-2 font-bold text-lg' >{errorMessage}</p>
+        <p className='text-red-600 mt-2 text-lg' >{errorMessage}</p>
 
         <button className=" bg-red-700 p-4 mt-8 w-full" onClick={handleButtonClick}>{isSignInForm?"Sign In":"Sign Up"}</button>
 
