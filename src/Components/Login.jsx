@@ -11,6 +11,7 @@ import { auth } from "../Utils/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Utils/UserSlice';
+import { USER_AVTAR } from "../Utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -43,7 +44,7 @@ const Login = () => {
 
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/87900167?v=4yy",
+            photoURL: USER_AVTAR,
           })
             .then(() => {
               //Profile updated!
@@ -56,18 +57,18 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
+              // navigate("/browse"); 
             })
             .catch((error) => {
               // An error occurred
               setErrorMessage(error.message);
             });
-          console.log(user);
+          
         })
         .catch((error) => {
-          const errorCode = error.code;
+          
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
+          setErrorMessage(errorMessage);
         });
     } else {
       //Signin logic
@@ -79,13 +80,13 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          
           navigate("/browse");
         })
         .catch((error) => {
-          const errorCode = error.code;
+          
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
+          setErrorMessage(errorMessage);
         });
     }
   };

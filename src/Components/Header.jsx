@@ -1,10 +1,22 @@
 
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../Utils/UserSlice";
+import { auth } from "../Utils/Firebase";
+
+     
+
+// import { addUser } from '../Utils/UserSlice';
+
 const Header = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+ 
   const user = useSelector((store)=>store.user);
 
 
@@ -18,12 +30,41 @@ const Header = () => {
         // Sign-out successful.
         navigate("/");
       })
-      .catch((error) => {
+      .catch(() => {
         // An error happened.
         navigate("/error")
 
       });
   }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        // User is signed out
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    //unsubscribe function is called when the component is unmounted
+    return () => unsubscribe;
+
+
+
+  },[]); 
+
+     
 
   return (
     <div className="absolute w-full justify-between flex px-20 py-8 bg-gradient-to-b from-black z-20 ">

@@ -13,7 +13,21 @@
 - implement signuser api
 - created our store redux with user slice
 - implemented signout
-- update profine api call
+- update profile
+- BugFix: Signup user dispaly name  and profile picture update
+- BugFix: if the user is not logged in redirect/ browse to login page and vice versa
+- unsubscribed to the on auth state change callback.
+- add hardcoded values to the constrains file
+- register TMDB & create an aapp & get the access token.
+- get data form TMDB now playing movies list API.  
+- costom hook for now playing movies.
+- create movieSlice
+- update store with movies data
+- planning for main container & secondary container 
+- fetch data for trailer video
+- update store with trailer video data
+- embedded the youtube video and make it autoplay and mute.
+- tailwind classses to make main container look awsome.
 
 
 
