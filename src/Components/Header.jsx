@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../Utils/UserSlice";
 import { auth } from "../Utils/Firebase";
+import { toggleGptSearchView } from "../Utils/gptSlice";
+import GptSearch from "./GptSearch";
 
      
 
@@ -18,6 +20,7 @@ const Header = () => {
   const dispatch = useDispatch();
  
   const user = useSelector((store)=>store.user);
+  const showGptSearch = useSelector((store)=>store.gpt.showGptSearch)
 
 
 
@@ -64,6 +67,15 @@ const Header = () => {
 
   },[]); 
 
+
+
+  const handleGptSearchClick = () => {
+    //toggle GTP Search component visibility
+    
+    dispatch(toggleGptSearchView())
+  }
+
+
      
 
   return (
@@ -73,7 +85,9 @@ const Header = () => {
         src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg?w=460"
         alt=""
       />
-      {user && (<div className="flex ">
+      {user && (
+        <div className="flex ">
+          <button className="py-1 px-4 m-2  bg-purple-800 text-white rounded" onClick={handleGptSearchClick}>{showGptSearch?"Home Page":"GPT Search"}</button>
         <img className="h-10 mr-3" 
           alt="usericon"
           src={user?.photoURL}

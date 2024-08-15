@@ -11,7 +11,7 @@ import { auth } from "../Utils/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Utils/UserSlice';
-import { USER_AVTAR } from "../Utils/constants";
+import { BG_URL, USER_AVTAR } from "../Utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -101,7 +101,7 @@ const Login = () => {
       <div className="absolute ">
         <img
           className=""
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/dd4dfce3-1a39-4b1a-8e19-b7242da17e68/86742114-c001-4800-a127-c9c89ca7bbe4/IN-en-20240527-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BG_URL}
           alt=""
         />
       </div>

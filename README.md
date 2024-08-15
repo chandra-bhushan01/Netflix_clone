@@ -31,13 +31,17 @@
 - Build secondary components
 - Build movie cards
 - TMDB image CDN
+- movies form TMDB movies
 - Made Browse page attractive
 - usepopular movies and trending movies costum hooks
+- GPT search page
+- GPT search bar
+
+
 - 
 
 
 
-- movies form TMDB movies
 
 # Features
 - Login/ Sign Up
